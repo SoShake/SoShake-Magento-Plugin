@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Up2social_Soshake>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Up2social_Soshake>
+	</modules>
+</config>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Up2social_Soshake>
+			<version>1.0.0</version>
+		</Up2social_Soshake>
+	</modules>
+	<global>
+		<blocks>
+			<soshake>
+				<class>Up2social_Soshake_Block</class>
+			</soshake>
+		</blocks>
+		<helpers>
+			<!-- Mage::helper('soshake') -->
+			<soshake>
+				<class>Up2social_Soshake_Helper</class>
+			</soshake>
+		</helpers>
+		<models>
+			<!-- Mage::getModel('soshake/soshake') -->
+			<soshake>
+				<class>Up2social_Soshake_Model</class>
+				<resourceModel>soshake_mysql4</resourceModel>
+			</soshake>
+			<soshake_mysql4>
+				<class>Up2social_Soshake_Model_Mysql4</class>
+				<entities>
+					<soshake>
+						<table>up2social</table>
+					</soshake>
+				</entities>
+			</soshake_mysql4>
+		</models>
+		<resources>
+			<!-- Mage::getResourceModel('soshake/soshake') or Mage::getResourceSingleton('soshake/soshake') -->
+			<soshake_setup>
+				<setup>Up2social_Soshake_Model</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</soshake_setup>
+			<soshake_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</soshake_read>
+			<soshake_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</soshake_write>
+		</resources>
+	</global>
+	<frontend>
+                <events>
+                        <core_block_abstract_to_html_after>
+                                <observers>
+                                        <Up2social_Soshake_Model_Observer>
+                                                <class>soshake/observer</class>
+                                                <method>insertUp2SocialSoShake</method>
+                                        </Up2social_Soshake_Model_Observer>
+                                </observers>
+                        </core_block_abstract_to_html_after>
+                </events>
+		<routers>
+			<soshake>
+				<use>standard</use>
+				<args>
+					<module>Up2social_Soshake</module>
+					<frontName>soshake</frontName>
+				</args>
+			</soshake>
+		</routers>
+	</frontend>
+        <admin>
+                <routers>
+                        <soshake>
+                                <use>admin</use>
+                                <args>
+                                        <module>Up2social_Soshake</module>
+                                        <frontName>adminsoshake</frontName>
+                                </args>
+                        </soshake>
+                 </routers>
+        </admin>
+        <adminhtml>
+                <menu>
+                        <soshake translate="title" module="adminhtml">
+                                <title>Up 2 Social - SoShake</title>
+                                <sort_order>100</sort_order>
+                                <action>adminsoshake/adminhtml_index</action>
+                        </soshake>
+                </menu>
+       </adminhtml>
+</config>
